@@ -15,7 +15,7 @@ To import the project simply type
 
     >>> from vectorize import vectorize
 
-after installation and use |vectorize| as a decorator
+after installation and use **vectorize** as a decorator
 to iterate over arguments of list type.
 
 .. code-block:: python
