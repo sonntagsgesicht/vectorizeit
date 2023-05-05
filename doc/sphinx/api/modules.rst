@@ -1,7 +1,7 @@
-vectorize
-=========
+vectorizeit
+===========
 
 .. toctree::
    :maxdepth: 4
 
-   vectorize
+   vectorizeit

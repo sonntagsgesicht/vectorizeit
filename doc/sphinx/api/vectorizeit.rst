@@ -1,11 +1,11 @@
-vectorize package
-=================
+vectorizeit package
+===================
 
 Submodules
 ----------
 
 
-.. automodule:: vectorize.vectorize
+.. automodule:: vectorizeit.vectorizeit
    :members:
    :undoc-members:
    :show-inheritance:
@@ -13,7 +13,7 @@ Submodules
 Module contents
 ---------------
 
-.. automodule:: vectorize
+.. automodule:: vectorizeit
    :members:
    :undoc-members:
    :show-inheritance:
