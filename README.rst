@@ -1,9 +1,36 @@
 
 .. image:: logo.png
 
-
 Python Project *vectorize*
------------------------------------------------------------------------
+--------------------------
+
+.. image:: https://github.com/sonntagsgesicht/vectorize/actions/workflows/python-package.yml/badge.svg
+    :target: https://github.com/sonntagsgesicht/vectorize/actions/workflows/python-package.yml
+    :alt: GitHubWorkflow
+
+.. image:: https://img.shields.io/readthedocs/vectorize
+   :target: http://vectorize.readthedocs.io
+   :alt: Read the Docs
+
+.. image:: https://img.shields.io/github/license/sonntagsgesicht/vectorize
+   :target: https://github.com/sonntagsgesicht/vectorize/raw/master/LICENSE
+   :alt: GitHub
+
+.. image:: https://img.shields.io/github/release/sonntagsgesicht/vectorize?label=github
+   :target: https://github.com/sonntagsgesicht/vectorize/releases
+   :alt: GitHub release
+
+.. image:: https://img.shields.io/pypi/v/vectorize
+   :target: https://pypi.org/project/vectorize/
+   :alt: PyPI Version
+
+.. image:: https://img.shields.io/pypi/pyversions/vectorize
+   :target: https://pypi.org/project/vectorize/
+   :alt: PyPI - Python Version
+
+.. image:: https://pepy.tech/badge/vectorize
+   :target: https://pypi.org/project/vectorize/
+   :alt: PyPI Downloads
 
 
 Introduction
