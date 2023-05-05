@@ -15,7 +15,7 @@ from os import getcwd
 from os.path import basename, split
 from regtest import RegressionTestCase
 
-from vectorize import vectorize
+from vectorizeit import vectorize
 
 
 # first run will build reference values (stored in files)

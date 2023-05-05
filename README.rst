@@ -4,32 +4,32 @@
 Python Project *vectorize*
 --------------------------
 
-.. image:: https://github.com/sonntagsgesicht/vectorize/actions/workflows/python-package.yml/badge.svg
-    :target: https://github.com/sonntagsgesicht/vectorize/actions/workflows/python-package.yml
+.. image:: https://github.com/sonntagsgesicht/vectorizeit/actions/workflows/python-package.yml/badge.svg
+    :target: https://github.com/sonntagsgesicht/vectorizeit/actions/workflows/python-package.yml
     :alt: GitHubWorkflow
 
-.. image:: https://img.shields.io/readthedocs/vectorize
-   :target: http://vectorize.readthedocs.io
+.. image:: https://img.shields.io/readthedocs/vectorizeit
+   :target: http://vectorizeit.readthedocs.io
    :alt: Read the Docs
 
-.. image:: https://img.shields.io/github/license/sonntagsgesicht/vectorize
-   :target: https://github.com/sonntagsgesicht/vectorize/raw/master/LICENSE
+.. image:: https://img.shields.io/github/license/sonntagsgesicht/vectorizeit
+   :target: https://github.com/sonntagsgesicht/vectorizeit/raw/master/LICENSE
    :alt: GitHub
 
-.. image:: https://img.shields.io/github/release/sonntagsgesicht/vectorize?label=github
-   :target: https://github.com/sonntagsgesicht/vectorize/releases
+.. image:: https://img.shields.io/github/release/sonntagsgesicht/vectorizeit?label=github
+   :target: https://github.com/sonntagsgesicht/vectorizeit/releases
    :alt: GitHub release
 
-.. image:: https://img.shields.io/pypi/v/vectorize
-   :target: https://pypi.org/project/vectorize/
+.. image:: https://img.shields.io/pypi/v/vectorizeit
+   :target: https://pypi.org/project/vectorizeit/
    :alt: PyPI Version
 
-.. image:: https://img.shields.io/pypi/pyversions/vectorize
-   :target: https://pypi.org/project/vectorize/
+.. image:: https://img.shields.io/pypi/pyversions/vectorizeit
+   :target: https://pypi.org/project/vectorizeit/
    :alt: PyPI - Python Version
 
-.. image:: https://pepy.tech/badge/vectorize
-   :target: https://pypi.org/project/vectorize/
+.. image:: https://pepy.tech/badge/vectorizeit
+   :target: https://pypi.org/project/vectorizeit/
    :alt: PyPI Downloads
 
 
@@ -40,7 +40,7 @@ To import the project simply type
 
 .. code-block:: python
 
-    >>> from vectorize import vectorize
+    >>> from vectorizeit import vectorize
 
 after installation and use **vectorize** as a decorator
 to iterate over arguments of list type.
@@ -62,7 +62,7 @@ The latest stable version can always be installed or updated via pip:
 
 .. code-block:: bash
 
-    $ pip install vectorize
+    $ pip install vectorizeit
 
 
 License

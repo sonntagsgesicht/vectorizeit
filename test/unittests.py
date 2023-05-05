@@ -16,7 +16,7 @@ from os.path import basename
 from unittest import TestCase
 
 
-from vectorize import vectorize
+from vectorizeit import vectorize
 
 
 class VectorizeUnitTests(TestCase):

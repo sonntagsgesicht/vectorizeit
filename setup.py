@@ -7,7 +7,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-pkg = __import__('vectorize')
+pkg = __import__('vectorizeit')
 
 setup(
     name=pkg.__name__,
@@ -33,9 +33,9 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Topic :: Education',
         'Topic :: Software Development',
     ],

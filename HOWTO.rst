@@ -2,7 +2,7 @@
 
 .. doctest::
 
-    >>> from vectorize import vectorize
+    >>> from vectorizeit import vectorize
 
     >>> @vectorize(keys=['a', 'b'])
     ... def foo(a, b):
