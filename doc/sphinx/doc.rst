@@ -1,5 +1,5 @@
 
-.. module:: vectorize
+.. module:: vectorizeit
     :noindex:
 
 -----------------

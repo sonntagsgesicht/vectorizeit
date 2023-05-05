@@ -6,3 +6,5 @@ Release 0.1
 -----------
 
 Release date was |today|
+
+* initial release
