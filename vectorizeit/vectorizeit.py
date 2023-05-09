@@ -16,11 +16,17 @@ from inspect import getargs
 ITERABLES = list, tuple, set, dict
 
 
-def vectorize(keys=(), types=None, returns=None, zipped=False):
+def vectorize(keys=(), varargs=True, varkw=True,
+              types=None, returns=None, zipped=False):
     """simply vectorize Python functions and methods by iteration.
 
     :param keys: set **keys** to identify arguments to iterate
-        by default no argument is vectorized
+        by default all arguments are vectorized
+        if **keys** is **None** no argument is vectorized
+    :param varargs: allowd variable argumnents to be vectorized
+        (default: **True**)
+    :param varkw: allowd variable keyword argumnents to be vectorized
+        (default: **True**)
     :param types: only arguments of types as specified in **types**
         will be vectorized.
         If not spefivied this defaults
@@ -127,6 +133,11 @@ def vectorize(keys=(), types=None, returns=None, zipped=False):
     returns = tuple if none_return else returns
 
     def decorator(func):
+        def _do(*args, **kwargs):
+            return func(*args, **kwargs)
+        if keys is None:
+            return _do
+
         args_list, _, _ = getargs(func.__code__)
         args_index = [args_list.index(k) for k in keys if k in args_list]
 
@@ -140,8 +151,13 @@ def vectorize(keys=(), types=None, returns=None, zipped=False):
 
         @wraps(func)
         def do(*args, **kwargs):
-            args_indexes = [i for i in args_index if
-                            i < len(args) and isinstance(args[i], types)]
+
+            if keys:
+                args_indexes = [i for i in args_index if
+                                i < len(args) and isinstance(args[i], types)]
+            else:
+                args_indexes = [i for i in range(len(args_list)) if
+                                i < len(args) and isinstance(args[i], types)]
             if not zipped and args_indexes:
                 args = list(args)
                 index = args_indexes[0]
@@ -150,8 +166,11 @@ def vectorize(keys=(), types=None, returns=None, zipped=False):
                           for a in args[index])
                 return None if none_return else ret
 
-            vargs_indexes = [i for i in range(len(args_list), len(args)) if
-                             isinstance(args[i], types)]
+            if varargs:
+                vargs_indexes = [i for i in range(len(args_list), len(args)) if
+                                 isinstance(args[i], types)]
+            else:
+                vargs_indexes = []
             if not zipped and vargs_indexes:
                 args = list(args)
                 index = vargs_indexes[0]
@@ -160,8 +179,15 @@ def vectorize(keys=(), types=None, returns=None, zipped=False):
                           for a in args[index])
                 return None if none_return else ret
 
-            kwargs_keys = [k for k in keys if
-                           k in kwargs and isinstance(kwargs[k], types)]
+            if keys:
+                kwargs_keys = [k for k in kwargs if
+                               k in keys and isinstance(kwargs[k], types)]
+            else:
+                kwargs_keys = [k for k in kwargs if
+                               isinstance(kwargs[k], types)]
+            if not varkw:
+                kwargs_keys = [k for k in kwargs_keys if k in args_list]
+
             if not zipped and kwargs_keys:
                 key = kwargs_keys[0]
                 cls = returns or kwargs[key].__class__
@@ -186,7 +212,6 @@ def vectorize(keys=(), types=None, returns=None, zipped=False):
                 # update(args/kwargs) to invoke func
                 cls = returns or tuple
                 ret = cls(func(*na, **nkw) for na, nkw in zip(nargs, nkwargs))
-                return ret
                 return None if none_return else ret
 
             return func(*args, **kwargs)

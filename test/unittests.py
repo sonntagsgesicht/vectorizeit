@@ -11,8 +11,6 @@
 # License:  Apache License 2.0 (see LICENSE file)
 
 
-from os import getcwd
-from os.path import basename
 from unittest import TestCase
 
 
@@ -116,7 +114,7 @@ class VectorizeUnitTests(TestCase):
 
     def test_vectorize_none(self):
         @vectorize(keys=['a'], types=(tuple, list,), returns='none')
-        def test(a, b, c=None, *args, **kwargs):
+        def test_none(a, b, c=None, *args, **kwargs):
             r = a, b, c, args, kwargs
             # print(*r)
             return len(str(r))
@@ -124,9 +122,99 @@ class VectorizeUnitTests(TestCase):
         rng = range(10)
         lst = list(rng)
 
-        t = test(lst, [2, 9], c=[3, 4], d=[6, 7])
+        t = test_none(lst, [2, 9], c=[3, 4], d=[6, 7])
         self.assertTrue(t is None)
 
-        t = test(rng, [2, 9], c=[3, 4], d=[6, 7])
+        t = test_none(rng, [2, 9], c=[3, 4], d=[6, 7])
         self.assertTrue(isinstance(t, int))
         self.assertEqual(49, t)
+
+    def test_vectorize_all(self):
+
+        @vectorize()
+        def test_all(a, b, c=None, *args, **kwargs):
+            r = a, b, c, args, kwargs
+            # print(*r)
+            return len(str(r))
+
+        rng = range(10)
+        lst = 'x'
+
+        t = test_all(lst, [2, 3, 4], c=[3, 4, 6, 7], d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, list))
+        self.assertEqual(3, len(t))
+
+        t = test_all(lst, '56', c=[3, 4, 5, 7], d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, list), type(t))
+        self.assertEqual(4, len(t))
+
+        t = test_all(lst, '56', c='hello', d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, list))
+        self.assertEqual(3, len(t))
+
+        t = test_all(lst, '56', 'hello', (123, 321), d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, tuple))
+        self.assertEqual(2, len(t))
+
+        t = test_all(lst, (123, 321), d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, tuple))
+        self.assertEqual(2, len(t))
+
+        t = test_all(lst, {123, 321}, d=('a', 'b', 'c'))
+        # d must be tuple as a set is not hashable
+        # hence only the frist entry may be a set
+        # as sets are not hashable either
+        self.assertTrue(isinstance(t, set))
+        self.assertEqual(1, len(t))  # as test2 returns always the same value
+
+        t = test_all(rng, (123, 345), 321, d='c')
+        self.assertTrue(isinstance(t, tuple))
+        self.assertEqual(2, len(t))
+
+        t = test_all(rng, 123, 321, d='c')
+        self.assertTrue(isinstance(t, int))
+        self.assertEqual(40, t)
+
+    def test_vectorize_None(self):
+
+        @vectorize(keys=None)
+        def test_None(a, b, c=None, *args, **kwargs):
+            r = a, b, c, args, kwargs
+            # print(*r)
+            return r
+
+        rng = range(10)
+        lst = list(rng)
+
+        t = test_None(lst, [2, 3, 4], c=[3, 4, 6, 7], d=['a', 'b', 'c'])
+        self.assertTrue(isinstance(t, tuple))
+        self.assertEqual(5, len(t))
+        self.assertEqual(lst, t[0])
+
+    def test_vectorize_varargs(self):
+        @vectorize(varargs=False, types=(tuple, list,))
+        def test(a, b, c=None, *args, **kwargs):
+            r = a, b, c, args, kwargs
+            # print(*r)
+            return len(str(r))
+
+        t = test('A', 'B', [2], [6, 7, 5])
+        self.assertEqual(1, len(t))
+
+        t = test('A', 'B', 2, [6, 7, 5])
+        self.assertTrue(isinstance(t, int))
+        self.assertEqual(31, t)
+
+    def test_vectorize_varkw(self):
+        @vectorize(varkw=False, types=(tuple, list,))
+        def test(a, b, c=None, *args, **kwargs):
+            r = a, b, c, args, kwargs
+            # print(*r)
+            return len(str(r))
+
+        t = test('A', 'B', c=[2], d=[6, 7, 5])
+        self.assertEqual(1, len(t))
+
+        t = test('A', 'B', c=2, d=[6, 7, 5])
+        self.assertTrue(isinstance(t, int))
+        self.assertEqual(35, t)
