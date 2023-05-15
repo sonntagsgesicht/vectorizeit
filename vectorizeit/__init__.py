@@ -11,9 +11,9 @@
 
 
 __doc__ = 'simply vectorize Python functions and methods by iteration.'
-__version__ = '0.1.2'
+__version__ = '0.1.1'
 __dev_status__ = '4 - Beta'
-__date__ = 'Tuesday, 09 May 2023'
+__date__ = 'Monday, 15 May 2023'
 __author__ = 'sonntagsgesicht'
 __email__ = 'sonntagsgesicht@icloud.com'
 __url__ = 'https://github.com/sonntagsgesicht/' + __name__
@@ -25,8 +25,3 @@ __scripts__ = ()
 __theme__ = 'sphinx_rtd_theme'
 
 from .vectorizeit import vectorize  # noqa F401
-
-
-# todo
-#  keys default to any
-#  limit vectorization of vargs and kwargs

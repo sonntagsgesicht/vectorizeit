@@ -47,6 +47,20 @@ def vectorize(keys=(), varargs=True, varkw=True,
 
     >>> from vectorizeit import vectorize
 
+    >>> @vectorize()
+    ... def foo(a, b, c=None, *args, **kwargs):
+    ...     return a, b, c, args, kwargs
+
+    >>> r = foo(1, ['b1', 'b2'], d=[10, 11])
+
+    >>> type(r)
+    <class 'list'>
+
+    >>> r
+    [[(1, 'b1', None, (), {'d': 10}), (1, 'b1', None, (), {'d': 11})], [(1, 'b2', None, (), {'d': 10}), (1, 'b2', None, (), {'d': 11})]]
+
+    This works also with specifying arguments to be vectorized.
+    
     >>> @vectorize(keys=['b'])
     ... def foo(a, b, c=None, *args, **kwargs):
     ...     return a, b, c, args, kwargs
@@ -69,7 +83,7 @@ def vectorize(keys=(), varargs=True, varkw=True,
     [((1, 'b1', 1, (), {'d': [10, 11]}), (1, 'b1', 2, (), {'d': [10, 11]})), ((1, 'b2', 1, (), {'d': [10, 11]}), (1, 'b2', 2, (), {'d': [10, 11]}))]
 
     Setting the **zipped** decorator argument will iter in parallel
-    over the mutiple vector inputs as have been zipped.
+    over the multiple vector inputs as have been zipped.
 
     >>> @vectorize(keys=['b', 'c'], zipped=True)
     ... def foo(a, b, c=None, *args, **kwargs):

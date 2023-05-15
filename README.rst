@@ -47,13 +47,38 @@ to iterate over arguments of list type.
 
 .. code-block:: python
 
-    >>> @vectorize(keys=['a', 'b'])
+    >>> @vectorize()
     ... def foo(a, b):
     ...     return a, b
 
     >>> foo((1, 2), ['a', 'b'])
     (((1, 'a'), (1, 'b')), ((2, 'a'), (2, 'b')))
 
+This works also with specifying arguments to be vectorized.
+
+.. code-block:: python
+
+    >>> @vectorize(keys=['b'])
+    ... def foo(a, b):
+    ...     return a, b
+
+    >>> foo((1, 2), ['a', 'b'])
+    ((1, 2), 'a'), ((1, 2), 'b'))
+
+Setting the **zipped** decorator argument will iter in parallel
+over the multiple vector inputs as have been zipped.
+
+.. code-block:: python
+
+    >>> @vectorize(keys=['b', 'c'], zipped=True)
+    ... def foo(a, b):
+    ...     return a, b
+
+    >>> foo((1, 2), ['a', 'b'])
+    ((1, 'a'), (2, 'b'))
+
+
+For more see the `detailed documentation <https://vectorizeit.readthedocs.io/en/latest/api/vectorizeit.html>`_.
 
 Install
 -------
