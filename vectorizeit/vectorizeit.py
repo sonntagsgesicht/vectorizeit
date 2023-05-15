@@ -5,7 +5,7 @@
 # simply vectorize Python functions and methods by iteration.
 #
 # Author:   sonntagsgesicht
-# Version:  0.1.2, copyright Friday, 05 May 2023
+# Version:  0.1.1, copyright Monday, 15 May 2023
 # Website:  https://github.com/sonntagsgesicht/vectorizeit
 # License:  Apache License 2.0 (see LICENSE file)
 
